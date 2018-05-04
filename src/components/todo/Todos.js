@@ -1,14 +1,18 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import Tasks from './queries/tasks.gql';
+import AddTodoForm from './AddTodoForm'; 
 
 @graphql(Tasks)
 class Todo extends React.Component {
+  handleSubmit(values) {
+		console.log(values)
+	}
   render() {
     const { tasks } = this.props.data;
-    console.log(this.props);
     return (
       <div className="card">
+        <AddTodoForm onSubmit={this.handleSubmit}/>
         <ul>
           {
             !tasks.nodes ?
